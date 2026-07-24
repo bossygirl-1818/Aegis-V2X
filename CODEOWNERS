@@ -1,0 +1,18 @@
+# Aegis-V2X code ownership — mirrors docs/module_decomposition.md
+/docs/                 @Vaishnavi
+/architecture/          @Vaishnavi
+/configs/                @Vaishnavi
+/ai/pointpillars/         @Vaishnavi
+/ai/v2x_vit/              @Vaishnavi
+/ai/gru/                  @Vaishnavi
+/ai/trust_estimator/      @Vaishnavi
+/ai/criticality/          @Vaishnavi
+/ai/twintrust_ap/         @Vaishnavi
+/digital_twin/            @Vaishnavi
+/simulation/             @Haridharani
+/datasets/                @Haridharani
+/backend/                @Logapriya
+/dashboard/               @Logapriya
+/deployment/              @Khushi
+/evaluation/              @Vaishnavi
+/papers/                  @Vaishnavi

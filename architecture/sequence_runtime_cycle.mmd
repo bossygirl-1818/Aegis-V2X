@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant Carla as CARLA
+    participant Sionna as Sionna RT
+    participant Perc as Perception (PointPillars/V2X-ViT/GRU)
+    participant DT as Digital Twin State
+    participant Trust as Trust Estimator
+    participant Crit as Criticality Estimator
+    participant AP as TwinTrust-AP (TAHS+FSDP)
+    participant Exec as Execution Layer
+
+    Carla->>Sionna: scene geometry, vehicle positions
+    Sionna->>Perc: CSI, SNR, path loss, beam info
+    Perc->>DT: predicted channel state + uncertainty
+    DT->>Trust: current state
+    DT->>Crit: current state
+    Trust->>AP: T_t
+    Crit->>AP: C_t
+    AP->>Exec: horizon H_t, action A_t
+    Exec->>DT: synchronization / beam update / comm mode
+    Exec-->>Carla: (next cycle) runtime feedback

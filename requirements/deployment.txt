@@ -1,0 +1,8 @@
+# Aegis-V2X — Edge deployment stack (Phase 6, owner: Khushi)
+# NOTE: torch2trt / tensorrt are installed on-device (Jetson Orin, JetPack SDK),
+# NOT via pip in the general dev environment. Listed here for documentation only.
+-r base.txt
+onnx==1.17.0
+onnxruntime-gpu==1.20.0
+# tensorrt            # provided by JetPack on Jetson Orin
+# pycuda              # provided by JetPack on Jetson Orin

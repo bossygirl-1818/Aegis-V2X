@@ -1,0 +1,10 @@
+flowchart LR
+    A[CARLA generates physical scene] --> B[Sionna RT simulates wireless channel]
+    B --> C[Multimodal data synchronized]
+    C --> D[AI models predict future channel conditions]
+    D --> E[Digital Twin state estimated]
+    E --> F[Trust and criticality computed]
+    F --> G[TwinTrust-AP selects communication actions]
+    G --> H[Actions executed]
+    H --> I[Feedback updates the Digital Twin]
+    I -.-> E

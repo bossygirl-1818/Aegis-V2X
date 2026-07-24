@@ -1,0 +1,5 @@
+# Aegis-V2X — Phase 1 environment (architecture, config, tooling only).
+# Full phase-specific stacks live in requirements/*.txt and are installed
+# only when that phase begins, to keep each contributor's environment light.
+-r requirements/base.txt
+-r requirements/dev.txt

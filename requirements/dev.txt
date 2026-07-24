@@ -1,0 +1,9 @@
+# Aegis-V2X — Development & code quality tooling (Phase 1+)
+-r base.txt
+pytest==8.3.3
+pytest-cov==5.0.0
+black==24.10.0
+flake8==7.1.1
+mypy==1.13.0
+isort==5.13.2
+pre-commit==4.0.1

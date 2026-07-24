@@ -1,0 +1,8 @@
+# Aegis-V2X — Simulation stack (Phase 2, owner: Haridharani)
+-r base.txt
+carla==0.9.15
+# NVIDIA Sionna RT installed per vendor instructions (requires TensorFlow + CUDA);
+# pinned separately in simulation/README.md due to platform-specific build steps.
+sionna==0.19.1
+matplotlib==3.9.2
+open3d==0.18.0

@@ -1,0 +1,57 @@
+# Aegis-V2X — Local development stack
+# Only the `dev` service is active in Phase 1. `postgres`, `backend`,
+# `prometheus`, and `grafana` are pre-declared here so the Phase 3
+# (Logapriya) and monitoring work can be added without restructuring
+# this file — do not activate them before their owning phase begins.
+version: "3.9"
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    tty: true
+
+  # --- Activated in Phase 3 (Logapriya) ---
+  postgres:
+    image: postgres:16-alpine
+    profiles: ["backend"]
+    environment:
+      POSTGRES_DB: aegis_v2x
+      POSTGRES_USER: aegis
+      POSTGRES_PASSWORD: change_me_in_env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # --- Activated in Phase 3 (Logapriya) ---
+  backend:
+    profiles: ["backend"]
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+
+  # --- Activated in Phase 3 (Logapriya) ---
+  prometheus:
+    image: prom/prometheus:latest
+    profiles: ["monitoring"]
+    ports:
+      - "9090:9090"
+
+  # --- Activated in Phase 3 (Logapriya) ---
+  grafana:
+    image: grafana/grafana:latest
+    profiles: ["monitoring"]
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:

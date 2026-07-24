@@ -1,0 +1,41 @@
+# Aegis-V2X — Dataset schema & paths (Phase 2, owner: Haridharani)
+
+paths:
+  raw_carla: "datasets/raw/carla"
+  raw_sionna: "datasets/raw/sionna"
+  synchronized: "datasets/synchronized"
+  processed: "datasets/processed"
+  train: "datasets/train"
+  validation: "datasets/validation"
+  test: "datasets/test"
+  annotations: "datasets/annotations"
+  metadata: "datasets/metadata"
+  statistics: "datasets/statistics"
+
+schema_fields:
+  - sample
+  - scene_id
+  - frame_id
+  - vehicle_id
+  - timestamp
+  - lidar
+  - gps
+  - imu
+  - speed
+  - csi
+  - snr
+  - rssi
+  - path_loss
+  - beam_index
+  - traffic_density
+  - weather
+  - ground_truth_future_csi
+  - ground_truth_future_beam
+  - ground_truth_trust
+  - ground_truth_criticality
+
+naming_convention: "Scene{scene_id:02d}_Vehicle{vehicle_id:02d}_Frame{frame_id:06d}.npz"
+
+versioning:
+  current_version: "v0.0.0-unreleased"
+  changelog_path: "datasets/metadata/CHANGELOG.md"

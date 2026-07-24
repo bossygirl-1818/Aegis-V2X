@@ -1,0 +1,9 @@
+flowchart TB
+    TC["Trust (T) + Criticality (C)"] --> TAHS[TAHS]
+    TC --> FSDP[FSDP]
+    TAHS --> JAD[Joint Adaptive Decision]
+    FSDP --> JAD
+    JAD --> EXEC[Execution Layer]
+    EXEC --> FB[Feedback]
+    FB --> TR[Trust Recalculation]
+    TR -.-> TC

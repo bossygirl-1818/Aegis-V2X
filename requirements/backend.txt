@@ -1,0 +1,9 @@
+# Aegis-V2X — Backend & dashboard stack (Phase 3, owner: Logapriya)
+-r base.txt
+fastapi==0.115.4
+uvicorn[standard]==0.32.0
+sqlalchemy==2.0.36
+psycopg2-binary==2.9.10
+alembic==1.13.3
+websockets==13.1
+prometheus-client==0.21.0

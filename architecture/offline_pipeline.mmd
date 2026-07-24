@@ -1,0 +1,8 @@
+flowchart TB
+    A[Simulation Rollouts] --> B[Training Dataset]
+    B --> C[Trust Model Training]
+    C --> D[Calibration]
+    D --> E[TAHS Parameter Learning]
+    E --> F[Offline Pareto Optimization]
+    F --> G[FSDP Policy Table]
+    G --> H[Runtime Deployment]

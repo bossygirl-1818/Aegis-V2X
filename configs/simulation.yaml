@@ -1,0 +1,36 @@
+# Aegis-V2X — Simulation configuration (Phase 2, owner: Haridharani)
+# Source: 09_Aegis-V2X_Dataset_Design_and_Annotation_Guide
+
+carla:
+  version: "0.9.15"
+  town_types: ["urban", "highway", "junction", "roundabout", "straight_road"]
+  traffic_density: ["dense", "sparse"]
+  weather: ["clear_day", "rain", "fog", "night"]
+  vehicles_per_scene: [30, 60]
+
+sionna_rt:
+  ray_tracing: true
+  outputs: ["csi", "snr", "rssi", "path_loss", "delay_spread",
+            "beam_index", "los_nlos", "multipath_components",
+            "reflection_paths", "propagation_delay"]
+
+sensors:
+  lidar_hz: 10
+  gps_hz: 10
+  imu_hz: 100
+  camera_fps: 30
+  vehicle_speed_hz: 10
+  csi_hz: 10
+
+synchronization:
+  tolerance_ms: 10
+  required_fields: ["scene_id", "frame_id", "vehicle_id",
+                     "simulation_timestamp", "wireless_timestamp",
+                     "synchronization_timestamp"]
+
+dataset_targets:
+  traffic_scenes: [100, 150]
+  frames_total: [10000, 20000]
+  train_split: 0.70
+  validation_split: 0.15
+  test_split: 0.15

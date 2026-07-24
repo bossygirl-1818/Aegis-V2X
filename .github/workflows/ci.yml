@@ -1,0 +1,26 @@
+name: Aegis-V2X CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  phase1-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Lint
+        run: make lint
+      - name: Type check
+        run: make typecheck
+      - name: Verify environment
+        run: python scripts/verify_env.py
+      - name: Run tests
+        run: make test

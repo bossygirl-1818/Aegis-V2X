@@ -1,0 +1,39 @@
+flowchart TB
+    subgraph L1["Layer 1 — Physical Environment"]
+        CARLA["CARLA\n(vehicles, roads, weather, sensors)"]
+    end
+    subgraph L2["Layer 2 — Wireless Environment"]
+        SIONNA["NVIDIA Sionna RT\n(CSI, SNR, path loss, blockage)"]
+    end
+    subgraph L3["Layer 3 — Synchronized Multimodal Inputs"]
+        SYNC["LiDAR + GPS + IMU + CSI + SNR + Map/Traffic"]
+    end
+    subgraph L4["Layer 4 — Perception & Channel Prediction"]
+        PP["PointPillars"] --> VIT["V2X-ViT"] --> GRU["GRU Predictor"]
+    end
+    subgraph L5["Layer 5 — Digital Twin State"]
+        DT["DigitalTwinState\nCSI, SNR, Beam, Mobility, Env, Uncertainty, Age"]
+    end
+    subgraph L6["Layer 6 — Digital Twin Self-Evaluation"]
+        TRUST["Calibrated Twin Trust Estimator\nT in [0,1]"]
+        CRIT["Criticality Estimator\nC in [0,1]"]
+    end
+    subgraph L7["Layer 7 — TwinTrust-AP"]
+        TAHS["TAHS\n(prediction horizon)"]
+        FSDP["FSDP\n(joint action, O(1) lookup)"]
+    end
+    EXEC["Execution Layer\nPrediction Scheduler, DT Synchronizer,\nBeam Manager, Comm Controller"]
+    FEEDBACK["Runtime Feedback"]
+
+    CARLA --> SIONNA --> SYNC --> PP
+    GRU --> DT
+    DT --> TRUST
+    DT --> CRIT
+    TRUST --> TAHS
+    TRUST --> FSDP
+    CRIT --> TAHS
+    CRIT --> FSDP
+    TAHS --> EXEC
+    FSDP --> EXEC
+    EXEC --> FEEDBACK
+    FEEDBACK -.->|updates| DT

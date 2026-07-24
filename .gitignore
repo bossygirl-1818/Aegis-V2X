@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# Data & model artifacts (tracked via DVC/versioning strategy, not git)
+datasets/raw/
+datasets/synchronized/
+datasets/processed/
+datasets/train/
+datasets/validation/
+datasets/test/
+models/*.onnx
+models/*.engine
+models/*.pth
+logs/*.log
+results/*
+
+# Env / secrets
+.env
+*.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

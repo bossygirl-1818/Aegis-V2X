@@ -1,0 +1,13 @@
+# Aegis-V2X conda environment (recommended for CARLA/Sionna GPU work)
+name: aegis-v2x
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - cudatoolkit=12.1
+  - pip:
+      - -r requirements/base.txt

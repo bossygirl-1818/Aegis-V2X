@@ -1,0 +1,72 @@
+# Aegis-V2X — AI model configuration
+# Values sourced from: 03_Mathematical_Formulation, 04_Novel_Algorithm_Design
+# Populated (activated) during Phase 4-5. Present now so config schema is
+# frozen before implementation begins.
+
+trust_estimator:
+  # z_t = [w1*e_t, w2*u_t, w3*a_t, w4*q_t]  (prediction error, uncertainty,
+  # sync age, comm quality)
+  feature_weights:
+    prediction_error: 0.35      # w1
+    prediction_uncertainty: 0.25 # w2
+    sync_age: 0.20               # w3
+    comm_quality: 0.20           # w4
+  calibration_temperature: 0.8   # tau in T_t = sigmoid(S_t / tau)
+  calibration_bins:              # for reliability-diagram / ECE evaluation
+    - [0.0, 0.2]   # very unreliable
+    - [0.2, 0.4]   # low confidence
+    - [0.4, 0.6]   # moderate confidence
+    - [0.6, 0.8]   # reliable
+    - [0.8, 1.0]   # highly reliable
+
+criticality_estimator:
+  # C_t = sum(alpha_i * f_i), sum(alpha_i) = 1
+  feature_weights:
+    relative_speed: 0.25
+    blockage_probability: 0.25
+    sync_age: 0.15
+    channel_degradation: 0.20
+    traffic_density: 0.15
+
+tahs:
+  # H_t = H_min + (H_max - H_min) * sigmoid(beta*T_t - gamma*C_t)
+  horizon_min: 1
+  horizon_max: 10
+  horizon_discretization: [1, 2, 3, 5, 8, 10]
+  beta: 1.0   # trust sensitivity
+  gamma: 1.0  # criticality sensitivity
+
+fsdp:
+  trust_bins: ["low", "medium", "high"]
+  criticality_bins: ["low", "medium", "high"]
+  num_states: 9   # 3 x 3
+  actions:
+    - synchronize
+    - predict
+    - beam_switch
+    - reduce_horizon
+    - increase_horizon
+    - maintain_state
+  policy_table_path: "models/fsdp_policy_table.json"  # generated offline, Phase 5
+
+perception:
+  pointpillars:
+    voxel_size: [0.16, 0.16, 4.0]
+    point_cloud_range: [0, -39.68, -3, 69.12, 39.68, 1]
+  v2x_vit:
+    embed_dim: 256
+    num_heads: 8
+    num_layers: 4
+  gru:
+    hidden_size: 128
+    num_layers: 2
+    input_features: ["csi", "snr", "beam_index", "mobility"]
+
+objective_function:
+  # J = w1*L + w2*E + w3*O + w4*F - w5*R
+  weights:
+    latency: 0.25
+    energy: 0.20
+    sync_overhead: 0.20
+    beam_failures: 0.20
+    reliability: 0.15

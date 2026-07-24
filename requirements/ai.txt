@@ -1,0 +1,7 @@
+# Aegis-V2X — AI / Deep Learning stack (Phases 4-5, owner: Vaishnavi)
+-r base.txt
+torch==2.5.1
+torchvision==0.20.1
+scikit-learn==1.5.2
+onnx==1.17.0
+onnxruntime==1.20.0

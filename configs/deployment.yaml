@@ -1,0 +1,26 @@
+# Aegis-V2X — Edge deployment configuration (Phase 6, owner: Khushi)
+
+device: jetson_orin
+
+export:
+  framework: pytorch
+  intermediate_format: onnx
+  onnx_opset: 17
+
+optimization:
+  engine: tensorrt
+  precision: fp16          # fp32 | fp16 | int8
+  max_workspace_size_mb: 4096
+  layer_fusion: true
+
+benchmarking:
+  metrics: ["inference_latency_ms", "power_watts",
+            "memory_utilization_mb", "throughput_fps"]
+  warmup_iterations: 50
+  measurement_iterations: 500
+
+models_to_deploy:
+  - trust_estimator
+  - criticality_estimator
+  - tahs
+  - fsdp
