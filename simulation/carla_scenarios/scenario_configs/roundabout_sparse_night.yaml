@@ -1,0 +1,10 @@
+# Scenario: roundabout, sparse traffic, night — low-trust / high-criticality regime
+scenario_id: "roundabout_sparse_night"
+town_type: "roundabout"       # -> Town03
+traffic_density: "sparse"
+weather: "night"
+num_roadside_units: 2
+duration_sec: 100
+frame_rate_hz: 10
+random_seed: 104
+num_scenes: 20

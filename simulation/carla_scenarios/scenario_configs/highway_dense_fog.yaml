@@ -1,0 +1,10 @@
+# Scenario: dense highway traffic, fog (high relative speed + blockage probability)
+scenario_id: "highway_dense_fog"
+town_type: "highway"          # -> Town06
+traffic_density: "dense"
+weather: "fog"
+num_roadside_units: 4
+duration_sec: 150
+frame_rate_hz: 10
+random_seed: 102
+num_scenes: 20

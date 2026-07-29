@@ -1,0 +1,10 @@
+# Scenario: dense urban traffic, clear daylight
+scenario_id: "urban_dense_clear_day"
+town_type: "urban"            # -> town_maps.TOWN_TYPE_TO_MAP -> Town10HD
+traffic_density: "dense"      # configs/simulation.yaml carla.traffic_density
+weather: "clear_day"          # configs/simulation.yaml carla.weather
+num_roadside_units: 6
+duration_sec: 120
+frame_rate_hz: 10
+random_seed: 101
+num_scenes: 20

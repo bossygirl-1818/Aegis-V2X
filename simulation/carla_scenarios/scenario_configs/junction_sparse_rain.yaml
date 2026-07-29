@@ -1,0 +1,10 @@
+# Scenario: signalized junction, sparse traffic, rain — frequent LOS/NLOS transitions
+scenario_id: "junction_sparse_rain"
+town_type: "junction"         # -> Town03
+traffic_density: "sparse"
+weather: "rain"
+num_roadside_units: 4
+duration_sec: 120
+frame_rate_hz: 10
+random_seed: 103
+num_scenes: 20

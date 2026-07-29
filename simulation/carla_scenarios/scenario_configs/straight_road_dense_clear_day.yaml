@@ -1,0 +1,10 @@
+# Scenario: straight road, dense traffic, clear daylight — baseline high-speed regime
+scenario_id: "straight_road_dense_clear_day"
+town_type: "straight_road"    # -> Town04
+traffic_density: "dense"
+weather: "clear_day"
+num_roadside_units: 4
+duration_sec: 120
+frame_rate_hz: 10
+random_seed: 105
+num_scenes: 20
